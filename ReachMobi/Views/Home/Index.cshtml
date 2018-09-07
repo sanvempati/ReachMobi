@@ -1,0 +1,102 @@
+﻿
+@model ReachMobi.Models.RootObject
+@{
+    ViewBag.Title = "Home Page";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+@*<link href="@Url.Content("~/Content/productcards.css")" rel="stylesheet" type="text/css" />*@
+<link href="@Url.Content("~/Content/Flexbox.css")" rel="stylesheet" type="text/css" />
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+<div align="center">
+    <table style="margin-top: 50px;text-align:right;padding-bottom:30px">
+        <tr>
+            <td>
+                <input style="width:100%;margin-left:auto;margin-right:auto;border:groove;height:40px" class="form-control" id="search" autofocus="autofocus" type="text" name="search" required />
+            </td>
+            <td>
+                <button type="submit" style="height:40px;" class="btn-success">Itunes Search</button>
+            </td>
+        </tr>
+    </table>
+</div>
+}
+@*<section class="products">
+        @foreach (var result in Model.results)
+        {
+            if (result.trackViewUrl != null)
+            {
+                <div class="product-card">
+                    <div>
+                        <img src="@result.artworkUrl100" alt="@result.trackName">
+                    </div>
+                    <div class="product-info">
+                        <h3>@result.trackName</h3>
+                        <p class="price">@result.trackPrice &nbsp; @result.currency</p>
+                        <p><a href="@result.artistViewUrl">@result.artistName</a></p>
+                        @using (Html.BeginForm("test", "Home"))
+                        {
+                            <input type="hidden" name="hidcollectionID" value="@result.trackViewUrl" />
+                            <input type="submit" value="Click to View" />
+                        }
+
+                        <p>
+                            number of Click: @if (null != result.trackViewUrl && Model.RegisterClicks.ContainsKey(result.trackViewUrl.ToString()) == true)
+                            {@Model.RegisterClicks[result.trackViewUrl.ToString()]}
+                        </p>
+
+                    </div>
+                </div>
+
+            }
+        }
+    </section>*@
+
+
+
+
+
+<main class="main-area">
+
+    <div class="centered">
+
+        <section class="cards">
+
+
+
+            @foreach (var result in Model.results)
+    {
+        if (result.trackViewUrl != null)
+        {
+            <article class="card">
+                <div style="align-items:center">
+                    <img src="@result.artworkUrl100" alt="@result.trackName">
+                </div>
+                    <div class="card-content">
+                    <h3>@result.trackName</h3>
+                    <p class="price">@result.trackPrice &nbsp; @result.currency</p>
+                    <p><a href="@result.artistViewUrl">@result.artistName</a></p>
+                    @using (Html.BeginForm("test", "Home"))
+            {
+                <input type="hidden" name="hidcollectionID" value="@result.trackViewUrl" />
+                <input type="submit" value="Click to View"  />
+    }
+
+                    <p>
+                        Number of Clicks: @if (null != result.trackViewUrl && Model.RegisterClicks.ContainsKey(result.trackViewUrl.ToString()) == true)
+                {@Model.RegisterClicks[result.trackViewUrl.ToString()]}
+                    </p>
+
+
+                </div><!-- .card-content -->
+
+            </article>
+}
+}
+
+        </section>
+    </div>
+</main>
+
